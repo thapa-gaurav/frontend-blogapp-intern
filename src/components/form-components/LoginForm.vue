@@ -7,11 +7,10 @@ const currentPassword = ref('')
 const loginCheck = async (e) => {
   e.preventDefault()
   const loginUser = {
-    username: currentUsername,
-    password: currentPassword,
+    username: currentUsername.value,
+    password: currentPassword.value,
   }
   try {
-    console.log(loginUser)
     const res = await fetch('http://localhost:8000/api/login', {
       method: 'POST',
       headers: {
@@ -43,6 +42,7 @@ const loginCheck = async (e) => {
         class="form-control"
         id="username"
         placeholder="username"
+        required
       />
     </div>
     <div class="form-group">
@@ -53,6 +53,7 @@ const loginCheck = async (e) => {
         class="form-control"
         id="password"
         placeholder="Password"
+        required
       />
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
