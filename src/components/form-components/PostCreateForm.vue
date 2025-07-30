@@ -6,9 +6,9 @@ const currentText = ref('')
 const currentPrice = ref('')
 const currentFile = ref(null)
 
-const handleFileUpload = (event) => {
+const handleFileUpload = async (event) => {
   event.preventDefault()
-  currentFile.value = event.target.files[0]
+  currentFile.value = await event.target.files[0]
 }
 
 const handlePostUpload = async (event) => {
@@ -22,20 +22,31 @@ const handlePostUpload = async (event) => {
   }
 
   try {
+    // console.table(newPost)
+    // const res = await fetch('http://localhost:8000/api/posts', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-type': 'application/json',
+    //   },
+    //   body: JSON.stringify(newPost),
+    // })
+
+    const formData = new FormData()
+    formData.append('caption', newPost.caption)
+    formData.append('post_text', newPost.post_text)
+    formData.append('post_image', newPost.post_image)
+    formData.append('price', newPost.price)
     const res = await fetch('http://localhost:8000/api/posts', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(newPost),
+      method: 'Post',
+      body: formData,
     })
+    const data = res.json()
 
     if (!res.ok) {
       console.log('Error while networking')
       return
     }
 
-    const data = res.json()
     console.table(data)
   } catch (error) {
     console.error('Error: ' + error.message)
