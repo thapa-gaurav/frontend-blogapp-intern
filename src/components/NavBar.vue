@@ -7,10 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <router-link class="nav-link" :to="{ name: 'home' }">Home</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Other</a>
+          <router-link class="nav-link" :to="{ name: 'displaypost' }">Display</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'createpost' }">Create</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

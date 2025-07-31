@@ -52,12 +52,17 @@ onMounted(() => {
               <td>{{ post.caption }}</td>
               <td>
                 <!--TODO:  Needs to have router -->
-                <a href="{{route('post-show',$post->id)}}" class="btn btn-success btn-sm"
+                <!-- <a href="{{route('post-show',$post->id)}}" class="btn btn-success btn-sm"
                   ><i class="fa fa-eye" aria-hidden="true"></i
-                ></a>
-                <a href="{{route('post-edit',$post->id)}}" class="btn btn-primary btn-sm"
-                  ><i class="fa fa-pencil-alt" aria-hidden="true"></i
-                ></a>
+                ></a> -->
+                <router-link
+                  :to="{ name: 'showpost', params: { id: post.id } }"
+                  class="btn btn-primary btn-sm"
+                  ><i class="fa fa-eye" aria-hidden="true"></i
+                ></router-link>
+                <!-- <a href="{{route('post-edit',$post->id)}}" class="btn btn-primary btn-sm" -->
+                <!-- ><i class="fa fa-pencil-alt" aria-hidden="true"></i
+                ></a>-->
               </td>
             </tr>
           </tbody>
